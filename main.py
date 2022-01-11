@@ -56,6 +56,7 @@ def start_menu():
 
 
 def start_game():
+    # these loops need to be moved to a game clock function
     rng = random.randrange(0, 10, 1)
     if len(slimes) < constants.MAX_NUM_SLIMES:
         slimes.append(Enemy(random.randrange(0, 1050, 1), random.randrange(150, 600, 50) * -1, 32, 32, constants.IMG_SLIME_MOVE, projectileLog))
@@ -64,6 +65,16 @@ def start_game():
             items.append(Item("BOXING_GLOVE"))
         elif rng == 2:
             items.append(Item("FIREBALL"))
+
+    if scoreboard.score >= 15:
+        constants.MAX_NUM_SLIMES = 8
+    elif scoreboard.score >= 10:
+        constants.MAX_NUM_SLIMES = 6
+    elif scoreboard.score >= 5:
+        constants.MAX_NUM_SLIMES = 4
+    else:
+        constants.MAX_NUM_SLIMES = 2
+
     if scoreboard.lives <= 0:
         global gameMode
         gameMode = "MENU"

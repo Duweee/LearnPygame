@@ -20,8 +20,7 @@ class Button():
             action = False   # turns on when clicked. calls for an action
 
             pos = pygame.mouse.get_pos()  #position of mouse
-            if pygame.mouse.get_pressed()[0] == 1:
-                print(pos)
+
             if self.rect.collidepoint(pos):
                 self.rect.x = self.x + int((self.image.get_width() - self.image.get_width() * 1.1) / 2)
                 self.rect.y = self.y + int((self.image.get_height() - self.image.get_height() * 1.1) / 2)

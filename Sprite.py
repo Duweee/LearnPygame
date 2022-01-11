@@ -144,7 +144,6 @@ class Player(object):
                 self.weaponCounter -= 1
             else:
                 self.projectileLog.new_projectile("", self.direction, self.x, self.y + self.height * 3/5)
-                print("X")
 
             self.attackDelay = self.attackBuffer
 

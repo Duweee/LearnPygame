@@ -94,6 +94,8 @@ class Projectile(object):
             #pygame.draw.rect(win, (60,60,60), self.hitBox, 1)
 
     def use_fireball(self, win):
+        # hella magic numbers pls go back
+
         self.x += constants.FIREBALL_SPEED * self.direction
 
         if self.x > constants.WINDOW_WIDTH - 100 or self.x < 100:
@@ -103,24 +105,26 @@ class Projectile(object):
             if self.animationCounter >= 8:
                 self.animationCounter = 7
 
-            axis = self.animationCounter // 2 * 16
+            scale = int((self.animationCounter + 1) // 2) / 4
+
+            axis = (self.animationCounter // 2) * 16
 
             if self.direction == 1:
-                frame = pygame.transform.scale((self.img.get_image(axis, 0, 16, 16)), (32, 32))
+                frame = pygame.transform.scale((self.img.get_image(axis, 0, 16, 16)), (48 * scale, 48 * scale))
             else:
-                frame = pygame.transform.scale((self.img.get_image(axis, 0, 16, 16)), (32, 32))
+                frame = pygame.transform.scale((self.img.get_image(axis, 0, 16, 16)), (48 * scale, 48 * scale))
                 frame = pygame.transform.flip(frame, True, False)
 
 
-            # hella magic numbers pls go back
             if self.direction == 1:
-                self.hitBox = pygame.Rect(self.x + 64, self.y + 16, 5, 32)
-                win.blit(frame, (self.x + 32, self.y + 16))
+                self.hitBox = pygame.Rect(self.x + 64, self.y + 16, 5, 48)
+                win.blit(frame, (self.x + 32, self.y + 48 - 32 * scale))
             else:
-                self.hitBox = pygame.Rect(self.x - 32, self.y + 16, 5, 32)
-                win.blit(frame, (self.x - 32, self.y + 16))
-            #win.blit(frame, self.hitBox)#(self.x + (32 * self.direction), self.y))
-        pygame.draw.rect(win, (60,60,60), self.hitBox, 1)
+                self.hitBox = pygame.Rect(self.x - 32, self.y + 16, 5, 48)
+                win.blit(frame, (self.x - 32, self.y + 48 - 32 * scale))
+
+        # draws hitbox
+        # pygame.draw.rect(win, (60,60,60), self.hitBox, 1)
 
 
 
