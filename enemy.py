@@ -122,8 +122,7 @@ class Enemy(Player):
                     target.takeDamage(-1)
 
                 scoreboard.decrease_lives()
-            #if target.x == self.x and target.y + target.height == self.y + self.height:
-                #self.dying = True
+
             self.idleAnimation(win)
 
         for p in self.projectileLog.projectileLog:
