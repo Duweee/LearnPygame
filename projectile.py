@@ -58,8 +58,8 @@ class Projectile(object):
         self.y += self.curve
         self.curve += .5
 
-        if (self.x > constants.WINDOW_WIDTH - 100) or (
-                self.x < 100) or self.y > constants.WINDOW_HEIGHT - 50 or self.y < 10:
+        if (self.x > constants.WINDOW_WIDTH) or (
+                self.x < 0) or self.y > constants.WINDOW_HEIGHT - 50 or self.y < 10:
             self.done = True;
 
         else:
@@ -98,7 +98,7 @@ class Projectile(object):
 
         self.x += constants.FIREBALL_SPEED * self.direction
 
-        if self.x > constants.WINDOW_WIDTH - 100 or self.x < 100:
+        if self.x > constants.WINDOW_WIDTH or self.x < 0:
             self.done = True;
 
         else:
