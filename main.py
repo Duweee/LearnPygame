@@ -1,3 +1,8 @@
+"""
+Duy Nguyen
+1/11/21
+"""
+
 from player_controller import *
 from Sprite import *
 from buttons import *
@@ -68,9 +73,9 @@ def start_game():
 
     if scoreboard.score >= 15:
         constants.MAX_NUM_SLIMES = 8
-    elif scoreboard.score >= 10:
+    elif scoreboard.score >= 8:
         constants.MAX_NUM_SLIMES = 6
-    elif scoreboard.score >= 5:
+    elif scoreboard.score >= 2:
         constants.MAX_NUM_SLIMES = 4
     else:
         constants.MAX_NUM_SLIMES = 2

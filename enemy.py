@@ -1,3 +1,8 @@
+"""
+Duy Nguyen
+1/11/21
+"""
+
 import constants
 import scoreboard
 from Sprite import Player
@@ -109,10 +114,11 @@ class Enemy(Player):
                 if (random.randrange(1, 10, 1) == 3):
                     self.moveDown()
 
-            if target.x < self.x:
-                self.moveLeft()
-            else:
-                self.moveRight()
+            if (self.x > 0):
+                if target.x < self.x:
+                    self.moveLeft()
+                else:
+                    self.moveRight()
 
             if self.rect.colliderect(target):
                 self.dying = True
