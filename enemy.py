@@ -36,7 +36,7 @@ class Enemy(Player):
         self.phasingCounter = 0
         # hitbox
         self.rect = pygame.Rect((self.x, self.y), (self.width, self.height))
-        self.moveSpeed = 2
+        self.moveSpeed = constants.SLIME_SPEED
         self.dying = False
         self.dead = False
         self.projectileLog = projectileLog
