@@ -40,11 +40,9 @@ def redraw_game_window():
 def reset_game():
     scoreboard.reset_score()
     scoreboard.reset_lives()
-    pinkSprite.y = -100
-    pinkSprite.x = random.randrange(100, 1000, 1)
+    pinkSprite.respawn()
     for slime in slimes:
-        slime.y = -350
-        slime.x = random.randrange(100, 1000, 1)
+        slimes.pop(slimes.index(slime))
 
 
 def start_menu():
@@ -54,8 +52,8 @@ def start_menu():
     blankScoreLabel.update(win)
     scoreboard.draw_score(win, blankScoreLabel.x + 100, blankScoreLabel.y + 8, 3)
     if startButton.update(win):
-        gameMode = "GAME"
         reset_game()
+        gameMode = "GAME"
     draw_menu_character()
     pygame.display.update()
 
@@ -65,6 +63,8 @@ def start_game():
     rng = random.randrange(0, 10, 1)
     if len(slimes) < constants.MAX_NUM_SLIMES:
         slimes.append(Enemy(random.randrange(0, 1050, 1), random.randrange(150, 600, 50) * -1, 32, 32, constants.IMG_SLIME_MOVE, projectileLog))
+    elif len(slimes) > constants.MAX_NUM_SLIMES:
+        slimes.pop(0)
     if len(items) < constants.MAX_ITEMS:
         if rng == 1:
             items.append(Item("BOXING_GLOVE"))
@@ -103,7 +103,7 @@ pygame.init()
 background = constants.IMG_BACKGROUND
 clock = pygame.time.Clock()
 win = pygame.display.set_mode((constants.WINDOW_WIDTH, constants.WINDOW_HEIGHT))
-pygame.display.set_caption("Game")
+pygame.display.set_caption("Sprite Survival")
 
 
 # initializations

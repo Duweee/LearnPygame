@@ -48,7 +48,6 @@ class Player(object):
 
         self.dead = False
         self.slideCounter = 0
-        self.respawnCounter = 0
 
 
 
@@ -57,19 +56,18 @@ class Player(object):
             self.weaponCounter = 0
             self.weapon = "NONE"
 
-
         self.attackCount += 1
-        if (self.attackCount >= 4):
+        if self.attackCount >= 4:
             self.attackCount = 0
 
-        if (self.attackDelay >= 0):
+        if self.attackDelay >= 0:
             self.attackDelay -= 1
 
         self.gravity()
 
-        if (self.slideCounter > 0):
+        if self.slideCounter > 0:
             self.slideCounter -= 1
-        if (self.slideCounter < 0):
+        if self.slideCounter < 0:
             self.slideCounter += 1
 
         self.dx += self.slideCounter * -1
@@ -238,14 +236,11 @@ class Player(object):
 
     def respawn(self):
         if scoreboard.lives > 0:
-            if self.respawnCounter < constants.RESPAWN_DELAY:
-                self.respawnCounter += 1
-                self.y = -100
-            else:
-                self.x = random.randrange(0, 1050, 1)
-                self.y = -100
-                self.dead = False
-                self.respawnCounter = 0
+            self.weapon = "NONE"
+            self.weaponCounter = 0
+            self.y = -100
+            self.x = random.randrange(0, 1050, 1)
+            self.dead = False
 
 
 
