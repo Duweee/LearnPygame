@@ -34,7 +34,7 @@ class Item(object):
             self.vel_y = 10
         dy += self.vel_y
 
-        pygame.draw.rect(win, (255, 255, 255), self.rect, 1) # draws hitbox
+        # pygame.draw.rect(win, (255, 255, 255), self.rect, 1) # draws hitbox
 
         for tile in world.tile_list:
 
